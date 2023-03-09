@@ -4,7 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 import "./Products.css";
 
 const Products = () => {
-  const { products, abrirProducto } = useContext(datacontext);
+  const { products} = useContext(datacontext);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);

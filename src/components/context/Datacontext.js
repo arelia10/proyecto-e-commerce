@@ -36,8 +36,4 @@ const DataProvider = ({ children }) => {
   );
 };
 
-const abrirProducto = (id) => {
-  console.log("Soy el producto", id);
-};
-
 export { datacontext, DataProvider };
