@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { datacontext } from "../context/Datacontext";
+import { DataContext } from "../context/Datacontext";
 import { Modal, Button } from "react-bootstrap";
 import "./Products.css";
 
 const Products = () => {
-  const { products} = useContext(datacontext);
+  const { products} = useContext(DataContext);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);

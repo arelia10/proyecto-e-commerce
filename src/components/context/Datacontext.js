@@ -1,10 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
-const datacontext = createContext();
+const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const fetchProducts = async () => {
     const response = await fetch("https://dummyjson.com/products");
@@ -17,23 +18,36 @@ const DataProvider = ({ children }) => {
     const data = await response.json();
     return data;
   };
+
+  const searchProducts = async () => {
+    const response = await fetch(`https://dummyjson.com/products/search?q=${searchQuery}`);
+    const data = await response.json();
+    setProducts(data.products);
+  };
+
   const seleccionarProducto = async (id) => {
     const data = await fetchProduct(id);
     setSelectedProduct(data);
   };
 
-
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (searchQuery === "") {
+      fetchProducts();
+    } else {
+      searchProducts();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery]);
 
-  return (
-    <datacontext.Provider
-      value={{ products, selectedProduct, seleccionarProducto }}
-    >
-      {children}
-    </datacontext.Provider>
-  );
+  const data = {
+    products,
+    selectedProduct,
+    seleccionarProducto,
+    searchQuery,
+    setSearchQuery,
+  };
+
+  return <DataContext.Provider value={data}>{children}</DataContext.Provider>;
 };
 
-export { datacontext, DataProvider };
+export { DataContext, DataProvider };
