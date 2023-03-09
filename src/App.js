@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
+// import React, { useEffect, useState } from "react";
+// import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Home from "./components/home/home";
-import { BrowserRouter, Routes, route, Route } from "react-router-dom";
-import CartContent from "./components/CartContent/CartContent";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import CartContent from "./components/CartContent/CartContent";
 import { DataProvider } from "./components/context/Datacontext";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/cart" element={<CartContent />}></Route>
+          {/* <Route path="/cart" element={<CartContent />}></Route> */}
           <Route></Route>
         </Routes>
       </BrowserRouter>
